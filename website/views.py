@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint
 
 bp = Blueprint('main', __name__)
 
 
 @bp.route('/')
 def index():
-    return render_template('index.html')
+    return '<h1>Starter code for the assessment<h1>'
