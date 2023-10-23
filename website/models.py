@@ -20,10 +20,10 @@ class Event(db.Model):
     venuename = db.Column(db.String(200))
     image = db.Column(db.String(400))
     organiser = db.Column(db.String(80))
-    numticket = db.Column(db.Integer(80))
-    ticketcost = db.Column(db.Integer(80))
-    eventdate = db.Column(db.Datetime(80))
-    eventstart = db.Column(db.Datetime(80))
+    numticket = db.Column(db.Integer)
+    ticketcost = db.Column(db.Integer)
+    eventdate = db.Column(db.Datetime)
+    eventstart = db.Column(db.Datetime)
     description = db.Column(db.String(200))
     
     def __repr__(self):
