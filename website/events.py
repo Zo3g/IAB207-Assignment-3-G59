@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .models import Event, Comment
-from .forms import EventForm, CommentForm
+from .forms import EventForm
+# from .forms import CommentForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -9,15 +10,15 @@ from flask_login import login_required, current_user
 
 eventbp = Blueprint('event', __name__, url_prefix='/events')
 
-@eventbp.route('/<id>')
-def show(id):
-    event = db.session.scalar(db.select(Event).where(Event.id==id))
-    # create the comment form
-    form = CommentForm()    
-    return render_template('events/show.html', event=event, form=form)
+# @eventbp.route('/<id>')
+# def show(id):
+#     event = db.session.scalar(db.select(Event).where(Event.id==id))
+#     # create the comment form
+#     form = CommentForm()    
+#     return render_template('events/show.html', event=event, form=form)
 
 @eventbp.route('/create', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def create():
   print('Method type: ', request.method)
   form = EventForm()
@@ -50,7 +51,7 @@ def check_upload_file(form):
   return db_upload_path
 
 @eventbp.route('/<id>/comment', methods=['GET', 'POST'])  
-@login_required
+# @login_required
 def comment(id):  
     form = CommentForm()  
     #get the destination object associated to the page and the comment

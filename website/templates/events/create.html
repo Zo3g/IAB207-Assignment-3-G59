@@ -1,16 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'eventsBase.html' %}
 
 {% from 'bootstrap5/form.html' import render_form %}
+
+{% block header %}
+{% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h1>Add Travel Destination</h1>
-            <p>Enter a country that you will help clients travel to.</p>
-            {{ render_form(form) }}
-        </div>
+    <div class="badge" style="padding-top: 2%; padding-bottom: 2%;">
+        <h1>Create Event</h1>
+        {{ render_form(form) }}
     </div>
 </div>
 
