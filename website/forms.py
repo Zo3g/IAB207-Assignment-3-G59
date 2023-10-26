@@ -6,7 +6,9 @@ from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
-#Create new event
+# Create new event
+
+
 class EventForm(FlaskForm):
   name = StringField('Your Event Name', validators=[InputRequired()])
   venuename = StringField('Venue', 
@@ -22,28 +24,34 @@ class EventForm(FlaskForm):
             validators=[InputRequired()])
   submit = SubmitField("Create")
 
-#creates the login information
+# creates the login information
+
+
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
-    password=PasswordField("Password", validators=[InputRequired('Enter user password')])
+    user_name = StringField("User Name", validators=[
+                            InputRequired('Enter user name')])
+    password = PasswordField("Password", validators=[
+                             InputRequired('Enter user password')])
     submit = SubmitField("Login")
 
  # this is the registration form
+
+
 class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
-    email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
-    #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[InputRequired(),
-                  EqualTo('confirm', message="Passwords should match")])
+    user_name = StringField("User Name", validators=[InputRequired()])
+    email_id = StringField("Email Address", validators=[
+                           Email("Please enter a valid email")])
+    # linking two fields - password should be equal to data entered in confirm
+    password = PasswordField("Password", validators=[InputRequired(),
+                                                     EqualTo('confirm', message="Passwords should match")])
     confirm = PasswordField("Confirm Password")
 
-    #submit button
+    # submit button
     submit = SubmitField("Register")
 
-    #User comment
+    # User comment
+
+
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
-  submit = SubmitField('Submit')
-
-class BookingForm(FlaskForm):
-   tickets = IntegerField(validators=[InputRequired()])
+  submit = SubmitField('Create')

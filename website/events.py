@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from .models import Event, Comments
-from .forms import EventForm, CommentForm, BookingForm
+from .models import Event, Comment
+from .forms import EventForm, CommentForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -53,14 +53,14 @@ def check_upload_file(form):
 
 
 @eventbp.route('/<id>/comment', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def comment(id):
     form = CommentForm()
     # get the destination object associated to the page and the comment
-    destination = db.session.scalar(db.select(Event).where(Event.id == id))
+    events = db.session.scalar(db.select(Event).where(Event.id == id))
     if form.validate_on_submit():
         # read the comment from the form
-        comment = Comments(text=form.text.data, event=event,
+        comment = Comment(text=form.text.data, event=event,
                           user=current_user)
         # here the back-referencing works - comment.destination is set
         # and the link is created
