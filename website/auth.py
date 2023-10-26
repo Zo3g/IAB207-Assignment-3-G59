@@ -1,9 +1,9 @@
-from flask import Blueprint, flash, render_template, request, url_for, redirect
-from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
-from .forms import LoginForm, RegisterForm
-from flask_login import login_user, login_required, logout_user
 from . import db
+from flask_login import login_user, login_required, logout_user
+from .forms import LoginForm, RegisterForm
+from .models import User
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Blueprint, flash, render_template, request, url_for, redirect
 
 # create a blueprint
 bp = Blueprint('auth', __name__)
@@ -39,28 +39,25 @@ bp.route('/register', methods=['GET', 'POST'])
 
 
 def register():
-      register = RegisterForm()
-      # the validation of form is fine, HTTP request is POST
-      if (register.validate_on_submit() == True):
-            # get username, password and email from the form
-            uname = register.user_name.data
-            pwd = register.password.data
-            email = register.email_id.data
-            # check if a user exists
-            user = db.session.scalar(db.select(User).where(User.name == uname))
-            if user:  # this returns true when user is not None
-                flash('Username already exists, please try another')
-                return redirect(url_for('auth.register'))
-            # don't store the password in plaintext!
-            pwd_hash = generate_password_hash(pwd)
-            # create a new User model object
-            new_user = User(name=uname, password_hash=pwd_hash, emailid=email)
-            db.session.add(new_user)
-            db.session.commit()
-            # commit to the database and redirect to HTML page
-            return redirect(url_for('main.index'))
-        else:
-         return render_template('user.html', form=register, heading='Register')
-
-       
-        
+    register = RegisterForm()
+    # the validation of form is fine, HTTP request is POST
+    if (register.validate_on_submit() == True):
+        # get username, password and email from the form
+        uname = register.user_name.data
+        pwd = register.password.data
+        email = register.email_id.data
+        # check if a user exists
+        user = db.session.scalar(db.select(User).where(User.name == uname))
+        if user:  # this returns true when user is not None
+            flash('Username already exists, please try another')
+            return redirect(url_for('auth.register'))
+        # don't store the password in plaintext!
+        pwd_hash = generate_password_hash(pwd)
+        # create a new User model object
+        new_user = User(name=uname, password_hash=pwd_hash, emailid=email)
+        db.session.add(new_user)
+        db.session.commit()
+        # commit to the database and redirect to HTML page
+        return redirect(url_for('main.index'))
+    else:
+        return render_template('user.html', form=register, heading='Register')

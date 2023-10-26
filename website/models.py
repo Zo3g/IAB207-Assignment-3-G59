@@ -1,5 +1,4 @@
 from . import db
-from datetime import datetime
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
@@ -26,13 +25,13 @@ class Event(db.Model):
     description = db.Column(db.String(200))
     
     def __repr__(self):
-        return f"Event: {self.name}"
+        return f"Name: {self.name}"
     
-class Comment(db.Model):
+class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(400))
-    created_at = db.Column(db.DateTime, default=datetime.now())
+    created_at = db.Column(db.DateTime, default=DateTime.now())
     User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     Event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
 
@@ -47,7 +46,7 @@ class Booking(db.Model):
     tickets = db.Column(db.Integer)
         
     def __repr__(self):
-        return f"Booking: {self.text}"
+        return f"Comment: {self.text}"
 
 
 
