@@ -22,12 +22,11 @@ class Event(db.Model):
     organiser = db.Column(db.String(80))
     numticket = db.Column(db.Integer)
     ticketcost = db.Column(db.Integer)
-    eventdate = db.Column(db.DateTime)
-    eventstart = db.Column(db.DateTime)
+    eventdatetime = db.Column(db.DateTime)
     description = db.Column(db.String(200))
     
     def __repr__(self):
-        return f"Name: {self.name}"
+        return f"Event: {self.name}"
     
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -48,7 +47,7 @@ class Booking(db.Model):
     tickets = db.Column(db.Integer)
         
     def __repr__(self):
-        return f"Comment: {self.text}"
+        return f"Booking: {self.text}"
 
 
 
