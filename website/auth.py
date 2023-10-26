@@ -6,11 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint, flash, render_template, request, url_for, redirect
 
 # create a blueprint
-bp = Blueprint('auth', __name__)
-
-bp.route('/login', methods=['GET', 'POST'])
+authbp = Blueprint('auth', __name__)
 
 
+@authbp.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
     error = None
