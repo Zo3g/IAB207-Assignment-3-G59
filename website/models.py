@@ -21,8 +21,7 @@ class Event(db.Model):
     organiser = db.Column(db.String(80))
     numticket = db.Column(db.Integer)
     ticketcost = db.Column(db.Integer)
-    eventdate = db.Column(db.DateTime)
-    eventstart = db.Column(db.DateTime)
+    eventdatetime = db.Column(db.DateTime)
     description = db.Column(db.String(200))
     
     def __repr__(self):
