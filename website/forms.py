@@ -9,7 +9,7 @@ ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 #Create new event
 class EventForm(FlaskForm):
   name = StringField('Your Event Name', validators=[InputRequired()])
-  venue = StringField('Venue', 
+  venuename = StringField('Venue', 
             validators=[InputRequired()])
   image = FileField('Destination Image', validators=[
     FileRequired(message='Image cannot be empty'),
@@ -43,4 +43,7 @@ class RegisterForm(FlaskForm):
     #User comment
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
-  submit = SubmitField('Create')
+  submit = SubmitField('Submit')
+
+class BookingForm(FlaskForm):
+   tickets = IntegerField(validators=[InputRequired()])
