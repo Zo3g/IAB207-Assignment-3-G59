@@ -10,23 +10,19 @@ ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
 
 class EventForm(FlaskForm):
-    name = StringField('Your Event Name', validators=[InputRequired()])
-    venue = StringField('Venue',
-                        validators=[InputRequired()])
-    image = FileField('Destination Image', validators=[
-        FileRequired(message='Image cannot be empty'),
-        FileAllowed(ALLOWED_FILE, message='Only supports PNG, JPG, png, jpg')])
-    organiser = SelectField('Select', choices=['Faculty of Business', 'Faculty of Creative Industries', 'Faculty of Engineering', 'Faculty of Information Technology',
-                            'Faculty of Sciences', 'QUT Bookclub', 'CODE Network', 'Debating Society', 'QUT Cheer and Dance', 'QUT Cliffhangers'])
-    numticket = IntegerField(
-        'Number of available tickets', validators=[InputRequired()])
-    ticketcost = FloatField('Cost of a single ticket',
-                            validators=[InputRequired()])
-    eventdatetime = DateTimeField(
-        'Event date & start time', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
-    description = TextAreaField('Description',
-                                validators=[InputRequired()])
-    submit = SubmitField("Create")
+  name = StringField('Your Event Name', validators=[InputRequired()])
+  venuename = StringField('Venue', 
+            validators=[InputRequired()])
+  image = FileField('Destination Image', validators=[
+    FileRequired(message='Image cannot be empty'),
+    FileAllowed(ALLOWED_FILE, message='Only supports PNG, JPG, png, jpg')])
+  organiser = SelectField('Select', choices=['Faculty of Business', 'Faculty of Creative Industries', 'Faculty of Engineering', 'Faculty of Information Technology', 'Faculty of Sciences', 'QUT Bookclub', 'CODE Network', 'Debating Society', 'QUT Cheer and Dance', 'QUT Cliffhangers'])
+  numticket = IntegerField('Number of available tickets', validators=[InputRequired()])
+  ticketcost = FloatField('Cost of a single ticket', validators=[InputRequired()])
+  eventdatetime = DateTimeField('Event date & start time', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
+  description = TextAreaField('Description', 
+            validators=[InputRequired()])
+  submit = SubmitField("Create")
 
 # creates the login information
 
@@ -57,13 +53,5 @@ class RegisterForm(FlaskForm):
 
 
 class CommentForm(FlaskForm):
-    text = TextAreaField('Comment', [InputRequired()])
-    submit = SubmitField('Create')
-
-    # Booking form
-
-
-class BookingForm(FlaskForm):
-    tickets = IntegerField('Number of tickets purchased',
-                           validators=[InputRequired()])
-    submit = SubmitField("Tickets selected")
+  text = TextAreaField('Comment', [InputRequired()])
+  submit = SubmitField('Create')
