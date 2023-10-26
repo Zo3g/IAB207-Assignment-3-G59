@@ -34,9 +34,7 @@ def login():
     return render_template('user.html', form=login_form, heading='Login')
 
 
-bp.route('/register', methods=['GET', 'POST'])
-
-
+@authbp.route('/register', methods=['GET', 'POST'])
 def register():
     register = RegisterForm()
     # the validation of form is fine, HTTP request is POST
