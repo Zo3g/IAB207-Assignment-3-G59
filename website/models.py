@@ -27,9 +27,27 @@ class Event(db.Model):
     
     def __repr__(self):
         return f"Name: {self.name}"
+    
+class Comments(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(400))
+    created_at = db.Column(db.DateTime, default=datetime.now())
+    User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    Event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
 
-
-
+    def __repr__(self):
+        return f"Comment: {self.text}"
+    
+class Booking(db.Model):
+    __tablename__ = 'booking'
+    userID = db.Column(db.Integer)
+    reference = db.Column(db.Integer, primary_key=True)
+    eventID = db.Column(db.Integer, primary_key=True)
+    tickets = db.Column(db.Integer)
+        
+    def __repr__(self):
+        return f"Comment: {self.text}"
 
 
 

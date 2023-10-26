@@ -1,0 +1,17 @@
+{% extends 'eventsBase.html' %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="badge" style="padding-top: 2%; padding-bottom: 2%;">
+        <h1>Create Event</h1>
+        {{ render_form(form) }}
+    </div>
+</div>
+
+{% endblock %}
