@@ -17,6 +17,7 @@ class EventForm(FlaskForm):
   organiser = SelectField('Select', choices=['Faculty of Business', 'Faculty of Creative Industries', 'Faculty of Engineering', 'Faculty of Information Technology', 'Faculty of Sciences', 'QUT Bookclub', 'CODE Network', 'Debating Society', 'QUT Cheer and Dance', 'QUT Cliffhangers'])
   numticket = IntegerField('Number of available tickets', validators=[InputRequired()])
   ticketcost = FloatField('Cost of a single ticket', validators=[InputRequired()])
+  eventdatetime = DateTimeField('Event date & start time', format='%Y-%m-%d %H:%M:%S', validators=[InputRequired()])
   description = TextAreaField('Description', 
             validators=[InputRequired()])
   submit = SubmitField("Create")
