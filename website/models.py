@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
-    comments = db.relationship('Comment', backref='user')
+    comments = db.relationship('Comments', backref='user')
 
     def __repr__(self):
         return f"Name: {self.name}"

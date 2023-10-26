@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from .models import Event, Comments
+from .models import Event, Comment
 from .forms import EventForm, CommentForm
 from . import db
 import os
@@ -13,8 +13,9 @@ eventbp = Blueprint('event', __name__, url_prefix='/events')
 def show(id):
     event = db.session.scalar(db.select(Event).where(Event.id==id))
     # create the comment form
-    form = CommentForm()    
-    return render_template('events/show.html', event=event, form=form)
+    bookingForm = BookingForm() 
+    commentForm = CommentForm()   
+    return render_template('events/show.html', event=event, bookingForm=bookingForm, commentForm=commentForm)
 
 @eventbp.route('/create', methods=['GET', 'POST'])
 # @login_required
@@ -25,7 +26,7 @@ def create():
         # call the function that checks and returns image
         db_file_path = check_upload_file(form)
         event = Event(name=form.name.data, description=form.description.data,
-                      image=db_file_path, currency=form.currency.data)
+                      image=db_file_path, organiser=form.organiser.data, numticket=form.numticket.data, ticketcost=form.ticketcost.data, eventdatetime=form.eventdatetime.data, venuename=form.venuename.data)
         # add the object to the db session
         db.session.add(event)
         # commit to the database
@@ -37,30 +38,29 @@ def create():
 
 
 def check_upload_file(form):
-    # get file data from form
-    fp = form.image.data
-    filename = fp.filename
-    # get the current path of the module file… store image file relative to this path
-    BASE_PATH = os.path.dirname(__file__)
-    # upload file location – directory of this file/static/image
-    upload_path = os.path.join(
-        BASE_PATH, 'static/image', secure_filename(filename))
-    # store relative path in DB as image location in HTML is relative
-    db_upload_path = '/static/image/' + secure_filename(filename)
-    # save the file and return the db upload path
-    fp.save(upload_path)
-    return db_upload_path
+  #get file data from form  
+  fp = form.image.data
+  filename = fp.filename
+  #get the current path of the module file… store image file relative to this path  
+  BASE_PATH = os.path.dirname(__file__)
+  #upload file location – directory of this file/static/image
+  upload_path = os.path.join(BASE_PATH, 'static/img', secure_filename(filename))
+  #store relative path in DB as image location in HTML is relative
+  db_upload_path = '/static/img/' + secure_filename(filename)
+  #save the file and return the db upload path
+  fp.save(upload_path)
+  return db_upload_path
 
 
 @eventbp.route('/<id>/comment', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def comment(id):
     form = CommentForm()
     # get the destination object associated to the page and the comment
-    Event = db.session.scalar(db.select(Event).where(Event.id == id))
+    events = db.session.scalar(db.select(Event).where(Event.id == id))
     if form.validate_on_submit():
         # read the comment from the form
-        comment = Comments(text=form.text.data, events=Event,
+        comment = Comment(text=form.text.data, event=event,
                           user=current_user)
         # here the back-referencing works - comment.destination is set
         # and the link is created
