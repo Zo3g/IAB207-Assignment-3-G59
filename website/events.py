@@ -10,13 +10,12 @@ from flask_login import login_required, current_user
 
 eventbp = Blueprint('event', __name__, url_prefix='/events')
 
-# @eventbp.route('/<id>')
-# def show(id):
-#     event = db.session.scalar(db.select(Event).where(Event.id==id))
-#     # create the comment form
-#     form = CommentForm()
-#     return render_template('events/show.html', event=event, form=form)
-
+@eventbp.route('/<id>')
+def show(id):
+    event = db.session.scalar(db.select(Event).where(Event.id==id))
+    # create the comment form
+    form = CommentForm()    
+    return render_template('events/show.html', event=event, form=form)
 
 @eventbp.route('/create', methods=['GET', 'POST'])
 # @login_required
