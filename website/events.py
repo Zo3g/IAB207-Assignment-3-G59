@@ -53,14 +53,14 @@ def check_upload_file(form):
 
 
 @eventbp.route('/<id>/comment', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def comment(id):
     form = CommentForm()
     # get the destination object associated to the page and the comment
-    Event = db.session.scalar(db.select(Event).where(Event.id == id))
+    events = db.session.scalar(db.select(Event).where(Event.id == id))
     if form.validate_on_submit():
         # read the comment from the form
-        comment = Comments(text=form.text.data, events=Event,
+        comment = Comments(text=form.text.data, events=events,
                           user=current_user)
         # here the back-referencing works - comment.destination is set
         # and the link is created
