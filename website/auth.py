@@ -6,10 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint, flash, render_template, request, url_for, redirect
 
 # create a blueprint
-authbp = Blueprint('auth', __name__)
+bp = Blueprint('auth', __name__)
 
 
-@authbp.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
     error = None
@@ -34,7 +34,7 @@ def login():
     return render_template('user.html', form=login_form, heading='Login')
 
 
-@authbp.route('/register', methods=['GET', 'POST'])
+@bp.route('/register', methods=['GET', 'POST'])
 def register():
     register = RegisterForm()
     # the validation of form is fine, HTTP request is POST
