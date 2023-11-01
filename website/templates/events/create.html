@@ -8,7 +8,7 @@
 {% block content %}
 
 <main id="create">
-    {% with messages = get_flashed_messages(with_categories=true) %}
+{% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <div class="container">
             <div class="alert alert-success">

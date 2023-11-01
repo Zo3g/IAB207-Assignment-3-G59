@@ -19,6 +19,7 @@ def show(id):
     return render_template('events/show.html', event=event, commentForm=commentForm)
 
 @eventbp.route('/create', methods=['GET', 'POST'])
+@login_required
 # @login_required
 def create():
     print('Method type: ', request.method)

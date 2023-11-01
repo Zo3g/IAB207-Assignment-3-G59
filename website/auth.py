@@ -20,18 +20,19 @@ def login():
         user = db.session.scalar(db.select(User).where(User.name == user_name))
         # if there is no user with that name
         if user is None:
-            error = 'Incorrect username'  # could be a security risk to give this much info away
+            error = 'Login credentials are incorrect'  # could be a security risk to give this much info away
         # check the password - notice password hash function
         # takes the hash and password
         elif not check_password_hash(user.password_hash, password):
-            error = 'Incorrect password'
+            error = 'Login credentials are incorrect'
         if error is None:
             # all good, set the login_user of flask_login to manage the user
             login_user(user)
+            flash("Login Successful")
             return redirect(url_for('main.index'))
         else:
             flash(error)
-    return render_template('user.html', form=login_form, heading='Login')
+    return render_template('auth/login.html', form=login_form, heading='Login')
 
 
 @bp.route('/register', methods=['GET', 'POST'])
@@ -55,6 +56,12 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         # commit to the database and redirect to HTML page
-        return redirect(url_for('main.index'))
+        return redirect(url_for('auth.login'))
     else:
-        return render_template('user.html', form=register, heading='Register')
+        return render_template('auth/register.html', form=register, heading='Register')
+    
+@bp.route('/logout', methods=['GET', 'POST'])
+def logout():
+    logout_user()
+    flash("You are now logged out", 'success')
+    return redirect(url_for('main.index'))

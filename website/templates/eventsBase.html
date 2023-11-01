@@ -35,12 +35,21 @@
                     <li class="nav-item"">
                     <a class=" nav-link" href="bookingHistory.html">Booking History</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-item nav-link" href="#">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-item nav-link" href="#">Register</a>
-                    </li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="{{url_for('auth.logout')}}">Log Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="#">My Account</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="{{url_for('auth.login')}}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-item nav-link" href="{{url_for('auth.register')}}">Register</a>
+                        </li>
+                    {% endif %}
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
