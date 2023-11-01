@@ -1,9 +1,12 @@
-body {
+#create {
     background: url('../img/campus-2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+
+    padding-top: 3%;
+    padding-bottom: 5%;
 }
 
 .form-field {
@@ -15,6 +18,18 @@ body {
     background-color: #00407a;
     color: white;
     padding: 2% 1% 2% 1%;
-    margin: 3% 0% 3% 0%;
+    margin: 0% 0% 3% 0%;
     border-radius: 15px;
+}
+
+.alert {
+    margin-top: 2%;
+}
+
+.flashes {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
 }

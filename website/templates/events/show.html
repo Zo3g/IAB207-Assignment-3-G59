@@ -5,7 +5,8 @@
 {% block header %}
 {% endblock %}
 
-{% block content %}
+<main id="show">
+    {% block content %}
 
 <div class="container mt-5">
     <h3>{{ event.name }}</h3><span class="badge text-bg-success mb-3">Event Active</span>
@@ -39,7 +40,7 @@
                             </p>
 
                             <h5>2. Select Tickets</h5>
-                            {{ render_form(bookingForm) }}
+                            ``
                             <p class="text-body-secondary">Maximum 10 tickets per booking.</p>
                             <a href="bookingHistory.html" class="btn button-primary" tabindex="-1" role="button">Submit
                                 Booking</a>
@@ -85,3 +86,4 @@
 </div>
 
 {% endblock %}
+</main>

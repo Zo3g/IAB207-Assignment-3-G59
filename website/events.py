@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .models import Event, Comments
 from .forms import EventForm, CommentForm
 from . import db
+from datetime import datetime
 import os
 from werkzeug.utils import secure_filename
 # additional import:
@@ -13,9 +14,9 @@ eventbp = Blueprint('event', __name__, url_prefix='/events')
 def show(id):
     event = db.session.scalar(db.select(Event).where(Event.id==id))
     # create the comment form
-    bookingForm = BookingForm() 
+    # bookingForm = BookingForm() 
     commentForm = CommentForm()   
-    return render_template('events/show.html', event=event, bookingForm=bookingForm, commentForm=commentForm)
+    return render_template('events/show.html', event=event, commentForm=commentForm)
 
 @eventbp.route('/create', methods=['GET', 'POST'])
 # @login_required
@@ -23,15 +24,19 @@ def create():
     print('Method type: ', request.method)
     form = EventForm()
     if form.validate_on_submit():
+        
         # call the function that checks and returns image
         db_file_path = check_upload_file(form)
+        event_datetime = datetime.combine(form.eventdate.data, form.eventtime.data)
         event = Event(name=form.name.data, description=form.description.data,
-                      image=db_file_path, organiser=form.organiser.data, numticket=form.numticket.data, ticketcost=form.ticketcost.data, eventdatetime=form.eventdatetime.data, venuename=form.venuename.data)
+                      image=db_file_path, organiser=form.organiser.data, numticket=form.numticket.data, 
+                      ticketcost=form.ticketcost.data, 
+                      eventdatetime=event_datetime, venuename=form.venuename.data)
         # add the object to the db session
         db.session.add(event)
         # commit to the database
         db.session.commit()
-        flash('Successfully created new event', 'success')
+        flash('Successfully created new event!', 'success')
         # Always end with redirect when form is valid
         return redirect(url_for('event.create'))
     return render_template('events/create.html', form=form)

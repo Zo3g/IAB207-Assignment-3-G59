@@ -7,35 +7,57 @@
 
 {% block content %}
 
+<main id="create">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container">
+            <div class="alert alert-success">
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}
+
 <div class="container">
-    <div class="form-container">
-        <h1>Create Event</h1>
-        <label for="name" class="form-label">Name</label>
-        {{ form.name(class = "form-control form-field") }}
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-container">
+            {{form.hidden_tag()}}
+            <h1>Create Event</h1>
+            <label for="name" class="form-label">Name</label>
+            {{ form.name(class = "form-control form-field") }}
+    
+            <label for="venuename" class="form-label">Venue Name</label>
+            {{ form.venuename(class = "form-control form-field") }}
+    
+            <label for="image" class="form-label">Image</label>
+            {{ form.image(class = "form-control form-field") }}
+    
+            <label for="organiser" class="form-label">Organiser</label>
+            {{ form.organiser(class = "form-control form-field") }}
+    
+            <label for="numticket" class="form-label">Number of Tickets</label>
+            {{ form.numticket(class = "form-control form-field") }}
+    
+            <label for="ticketcost" class="form-label">Cost of Ticket</label>
+            {{ form.ticketcost(class = "form-control form-field") }}
+    
+            <label for="eventdate" class="form-label">Date</label>
+            {{ form.eventdate(class = "form-control form-field") }}
 
-        <label for="venuename" class="form-label">Venue Name</label>
-        {{ form.venuename(class = "form-control form-field") }}
-
-        <label for="image" class="form-label">Image</label>
-        {{ form.image(class = "form-control form-field") }}
-
-        <label for="organiser" class="form-label">Organiser</label>
-        {{ form.name(class = "form-control form-field") }}
-
-        <label for="numticket" class="form-label">Number of Tickets</label>
-        {{ form.numticket(class = "form-control form-field") }}
-
-        <label for="ticketcost" class="form-label">Cost of Ticket</label>
-        {{ form.ticketcost(class = "form-control form-field") }}
-
-        <label for="eventdatetime" class="form-label">Date & Time</label>
-        {{ form.eventdatetime(class = "form-control form-field") }}
-
-        <label for="description" class="form-label">Description</label>
-        {{ form.description(class = "form-control form-field") }}
-        <br>
-        {{ form.submit(class = "btn btn-success form-control form-field") }}
-    </div>
+            <label for="eventtime" class="form-label">Time</label>
+            {{ form.eventtime(class = "form-control form-field") }}
+    
+            <label for="description" class="form-label">Description</label>
+            {{ form.description(class = "form-control form-field") }}
+            <br>
+            {{ form.submit(class = "btn btn-success form-control form-field") }}
+        </div>
+    </form>
 </div>
+</main>
 
 {% endblock %}
