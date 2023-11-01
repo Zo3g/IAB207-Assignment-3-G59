@@ -48,8 +48,8 @@ def create_app():
     from . import events
     app.register_blueprint(events.eventbp)
 
-    # from . import booking
-    # app.register_blueprint(booking.bookingbp)
+    from . import booking
+    app.register_blueprint(booking.bookingbp)
 
     @app.errorhandler(404)
     # inbuilt function which takes error as parameter

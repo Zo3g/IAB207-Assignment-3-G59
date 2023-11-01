@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .models import Event, Booking
-from .forms import BookingForm
+# from .forms import BookingForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -10,8 +10,8 @@ from flask_login import login_required, current_user
 bookingbp = Blueprint('booking', __name__, url_prefix='/booking')
 
 
-@bookingbp.route('/booking', methods=['GET', 'POST'])
+@bookingbp.route('/', methods=['GET', 'POST'])
 @login_required
-def book():
-    print('Method type: ', request.method)
-    form = BookingForm()
+def get_booking():
+    bookings = db.session.scalar(db.select(Booking).where(Booking.userName.like(current_user.name)))
+    return render_template('booking.html', bookings = bookings)

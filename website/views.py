@@ -20,7 +20,17 @@ def search():
         return render_template('index.html', events=events)
     else:
         return redirect(url_for('main.index'))
-    
+        
+@bp.route('/filter')
+def filter_events():
+    search_term = request.args.get('faculty')
+    if search_term:
+        print(search_term)
+        query = "%" + search_term + "%"
+        events = db.session.scalars(db.select(Event).where(Event.organiser.like(query)))
+        return render_template('index.html', events=events)
+    else:
+        return redirect(url_for('main.index'))
 
 
 
