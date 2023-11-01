@@ -8,9 +8,33 @@
 {% block content %}
 
 <div class="container">
-    <div class="badge" style="padding-top: 2%; padding-bottom: 2%;">
+    <div class="form-container">
         <h1>Create Event</h1>
-        {{ render_form(form) }}
+        <label for="name" class="form-label">Name</label>
+        {{ form.name(class = "form-control form-field") }}
+
+        <label for="venuename" class="form-label">Venue Name</label>
+        {{ form.venuename(class = "form-control form-field") }}
+
+        <label for="image" class="form-label">Image</label>
+        {{ form.image(class = "form-control form-field") }}
+
+        <label for="organiser" class="form-label">Organiser</label>
+        {{ form.name(class = "form-control form-field") }}
+
+        <label for="numticket" class="form-label">Number of Tickets</label>
+        {{ form.numticket(class = "form-control form-field") }}
+
+        <label for="ticketcost" class="form-label">Cost of Ticket</label>
+        {{ form.ticketcost(class = "form-control form-field") }}
+
+        <label for="eventdatetime" class="form-label">Date & Time</label>
+        {{ form.eventdatetime(class = "form-control form-field") }}
+
+        <label for="description" class="form-label">Description</label>
+        {{ form.description(class = "form-control form-field") }}
+        <br>
+        {{ form.submit(class = "btn btn-success form-control form-field") }}
     </div>
 </div>
 
