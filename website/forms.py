@@ -8,7 +8,6 @@ ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
 # Create new event
 
-
 class EventForm(FlaskForm):
   name = StringField('Your Event Name', validators=[InputRequired()])
   venuename = StringField('Venue', 
@@ -23,6 +22,7 @@ class EventForm(FlaskForm):
   description = TextAreaField('Description', 
             validators=[InputRequired()])
   submit = SubmitField("Create")
+  
 
 # creates the login information
 

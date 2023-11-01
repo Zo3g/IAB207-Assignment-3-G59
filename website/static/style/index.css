@@ -89,3 +89,7 @@ h1 {
 .modal-body {
     text-align: center;
 }
+
+form{
+    background: url('static/img/campus-2.jpg');
+  }
