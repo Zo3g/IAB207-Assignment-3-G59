@@ -10,9 +10,8 @@ from flask_login import login_required, current_user
 bookingbp = Blueprint('booking', __name__, url_prefix='/booking')
 
 
-@bookingbp.route('/booking/<userID>', methods=['GET', 'POST'])
+@bookingbp.route('/', methods=['GET', 'POST'])
 @login_required
-def get_booking(userID):
-    booking = db.session.scalar(db.select(Booking).where(Booking.id == id))
-    booking = Booking.query.filter_by(id == userID)
-    return ('booking.html', booking == booking)
+def get_booking():
+    bookings = db.session.scalar(db.select(Booking).where(Booking.userName.like(current_user.name)))
+    return render_template('booking.html', bookings = bookings)

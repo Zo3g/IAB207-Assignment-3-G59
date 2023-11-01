@@ -41,7 +41,7 @@ class Comments(db.Model):
     
 class Booking(db.Model):
     __tablename__ = 'booking'
-    userID = db.Column(db.Integer)
+    userName = db.Column(db.String(100))
     reference = db.Column(db.Integer, primary_key=True)
     eventID = db.Column(db.Integer, primary_key=True)
     tickets = db.Column(db.Integer)
