@@ -50,9 +50,9 @@
                         </div>
                         <div class="badge carousel-caption d-sm-block d-md-none">
                             <div class="row">
-                                <h2>QUT eSports Competition 2023</h2>
-                                <p>QUT eSports Society</p>
-                                <a href="eventDetails.html" class="stretched-link"></a>
+                  <h2>QUT eSports Competition 2023</h2>
+                  <p>QUT eSports Society</p>
+                  <a href="eventDetails.html" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                 <div class="col-7"">
                     <h2>TEDxQUT 2023</h2>
                     <p>Industry & Networking</p>
-                    <a href=" eventDetails.html" class="stretched-link"></a>
+                    <a href="eventDetails.html" class="stretched-link"></a>
                                 </div>
                                 <div class="col-3">
                                     <h4>10th Oct<br>10:00 am</h4>
@@ -143,30 +143,30 @@
         <!--Button Group-->
         <div class="d-grid gap-2">
             <div class="btn-group button-primary btn-group-lg" role="group" aria-label="Basic example">
-                <a href="#Events" class="btn col-md-3"
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Business')}}" class="btn col-md-3"
                     style="padding-block: 50px; background-color: rgb(0, 255, 255, 0.8)">Faculty of Business</a>
-                <a href="#Events" class="btn btn-primary col-md-3"
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Creative Industries')}}" class="btn btn-primary col-md-3"
                     style="padding-block: 50px; background-color:#00407a; outline: none;">Faculty of Creative Industries</a>
-                <a href="#Events" class="btn col-md-3"
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Engineering')}}" class="btn col-md-3"
                     style="padding-block: 50px; background-color: rgb(0, 255, 255, 0.8)">Faculty of Engineering</a>
             </div>
         </div>
         <div class="d-grid gap-2">
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                <a href="#Events" class="btn btn-primary col-md-3"
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Information Technology')}}" class="btn btn-primary col-md-3"
                     style="padding-block: 50px; background-color:#00407a; outline: none;">Faculty of Information Technology</a>
-                <a href=" #Events" class="btn col-md-3"
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Sciences')}}" class="btn col-md-3"
                     style="padding-block: 50px; background-color:rgb(0, 255, 255, 0.8)">Faculty of Sciences</a>
                 <button type=" button" class="btn btn-primary dropdown-toggle col-md-3" data-bs-toggle="dropdown"
                     aria-expanded="false" style="padding-block: 50px; background-color:#00407a">
                     Filter by Student Clubs
                 </button>
                 <ul class=" dropdown-menu">
-                    <li><a class="dropdown-item" href="#Events">QUT Bookclub</a></li>
-                    <li><a class="dropdown-item" href="#Events">Code Network</a></li>
-                    <li><a class="dropdown-item" href="#Events">Debating Society</a></li>
-                    <li><a class="dropdown-item" href="#Events">QUT Cheer and Dance</a></li>
-                    <li><a class="dropdown-item" href="#Events">QUT Cliffhangers</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Bookclub')}}">QUT Bookclub</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='Code Network')}}">Code Network</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='Debating Society')}}">Debating Society</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Cheer and Dance')}}">QUT Cheer and Dance</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Cliffhangers')}}">QUT Cliffhangers</a></li>
                 </ul>
             </div>
         </div>
@@ -175,33 +175,159 @@
         <div class="row mb-3" id="Events">
             <h1>Upcoming Events</h1>
         </div>
-        {% for event in events %}
         <div class="card card-lg d-lg-block mb-3">
             <div class="row g-0">
                 <div class="col-md-3">
-                    <img src="{{ event.image }}" class="img-fluid rounded-start" alt="...">
+                    <img src="static/img/esport.jpg" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                         <div class="row mb-3">
-                            <h5 class="card-title"><span class="badge">Open</span>{{event.name}}</h5>
-                            <h6 class="text-body-secondary">{{event.organiser}}</h6>
+                            <h5 class="card-title"><span class="badge">Open</span>QUT eSports Competition 2023</h5>
+                            <h6 class="text-body-secondary">QUT
+                                eSports Society</h6>
                         </div>
                         <div class="row">
-                            <p class="card-text">{{event.description}}</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget
+                                feugiat
+                                arcu, id
+                                ultricies metus. Suspendisse consequat vehicula malesuada.</p>
                         </div>
                         <a href="eventDetails.html" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-2 my-auto">
                     <div class="card-body date-time">
-                        <!-- <h4>14<br>September<br>6:00 pm</h4> -->
-                        <h4>{{event.eventdatetime}}</h4>
+                        <h4>14<br>September<br>6:00 pm</h4>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="card d-block d-lg-none mb-3">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="static/img/esport.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <h5 class="card-title"><span class="badge">Open</span>QUT eSports Competition 2023</h5>
+                            <h6 class="text-body-secondary">QUT
+                                eSports Society</h6>
+                        </div>
+                        <div class="row mb-2">
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget
+                                feugiat
+                                arcu, id
+                                ultricies metus. Suspendisse consequat vehicula malesuada.</p>
+                        </div>
+                        <div class="row">
+                            <h4>14 September 6:00 pm</h4>
+                        </div>
+                        <a href="eventDetails.html" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-lg mb-3 d-none d-lg-block">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <img src="static/img/QUT Staff Event.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge" ">Open</span>Information Systems Faculty Mixer</h5>
+              <h6 class=" text-body-secondary">Faculty of Informations Systems</h6>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget
+                                    feugiat arcu,
+                                    id
+                                    ultricies metus. Suspendisse consequat vehicula malesuada.</p>
+                    </div>
+                    <a href="eventDetails.html" class="stretched-link"></a>
+                </div>
+                <div class="col-md-2 my-auto">
+                    <div class="card-body date-time">
+                        <h4>25<br>November<br>8:00 pm</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card d-block d-lg-none mb-3">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="static/img/QUT Staff Event.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <h5 class="card-title"><span class="badge" ">Open</span>Information Systems Faculty Mixer
+                </h5>
+                <h6 class=" text-body-secondary">QUT
+                                    Faculty of Informations Systems</h6>
+                        </div>
+                        <div class="row mb-2">
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget
+                                feugiat arcu, id
+                                ultricies metus. Suspendisse consequat vehicula malesuada.</p>
+                        </div>
+                        <div class="row">
+                            <h4>25 November 8:00 pm</h4>
+                        </div>
+                        <a href="eventDetails.html" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-lg mb-3 d-none d-lg-block">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <img src="static/img/TedxQUT.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge">Sold
+                                Out</span>TEDxQUT 2023</h5>
+                        <h6 class="text-body-secondary">Industry & Networking</h6>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget feugiat
+                            arcu, id
+                            ultricies metus. Suspendisse consequat vehicula malesuada.</p>
+                    </div>
+                    <a href="eventDetails.html" class="stretched-link"></a>
+                </div>
+                <div class="col-md-2 my-auto">
+                    <div class="card-body date-time">
+                        <h4>10<br>October<br>10:00 am</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card d-block d-lg-none mb-3">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="static/img/TedxQUT.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <h5 class="card-title"><span class="badge sold-out">Sold
+                                    Out</span>TEDxQUT 2023</h5>
+                            <h6 class=" text-body-secondary">QUT
+                                Industry & Networking</h6>
+                        </div>
+                        <div class="row mb-2">
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget
+                                feugiat arcu, id
+                                ultricies metus. Suspendisse consequat vehicula malesuada.</p>
+                        </div>
+                        <div class="row">
+                            <h4>10 October 10:00 am</h4>
+                        </div>
+                        <a href="eventDetails.html" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </main>
 {% endblock %}>
