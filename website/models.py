@@ -43,6 +43,7 @@ class Comments(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     Event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    datetime = db.Column(db.DateTime)
 
     def __repr__(self):
         return f"Comment: {self.text}"

@@ -6,8 +6,6 @@ from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
-# Create new event
-
 class EventForm(FlaskForm):
   name = StringField('Your Event Name', validators=[InputRequired()])
   venuename = StringField('Venue', 
@@ -36,10 +34,6 @@ class EventEditForm(FlaskForm):
   eventtime = TimeField('Event time')
   description = TextAreaField('Description')
   submit = SubmitField("Submit")
-  
-
-# creates the login information
-
 
 class LoginForm(FlaskForm):
     user_name = StringField("User Name", validators=[
@@ -47,9 +41,6 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[
                              InputRequired('Enter user password')])
     submit = SubmitField("Login")
-
- # this is the registration form
-
 
 class RegisterForm(FlaskForm):
     user_name = StringField("User Name", validators=[InputRequired()])
@@ -61,11 +52,7 @@ class RegisterForm(FlaskForm):
                                                      EqualTo('confirm', message="Passwords should match")])
     confirm = PasswordField("Confirm Password")
 
-    # submit button
     submit = SubmitField("Register")
-
-    # User comment
-
 
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
