@@ -69,7 +69,7 @@ class RegisterForm(FlaskForm):
 
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
-  submit = SubmitField('Create')
+  submit = SubmitField('Submit')
 
 class BookingForm(FlaskForm):
   tickets = IntegerField('Number of tickets purchased', validators=[InputRequired()])

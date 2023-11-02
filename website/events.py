@@ -32,7 +32,7 @@ def create():
         event = Event(name=form.name.data, description=form.description.data,
                       image=db_file_path, organiser=form.organiser.data, numticket=form.numticket.data, 
                       ticketcost=form.ticketcost.data, 
-                      eventdatetime=event_datetime, venuename=form.venuename.data)
+                      eventdatetime=event_datetime, venuename=form.venuename.data, username=current_user.name)
         # add the object to the db session
         db.session.add(event)
         # commit to the database
@@ -40,7 +40,7 @@ def create():
         flash('Successfully created new event!', 'success')
         # Always end with redirect when form is valid
         return redirect(url_for('event.create'))
-    return render_template('events/create.html', form=form)
+    return render_template('events/create.html', form=form, heading='Create Event')
 
 @eventbp.route('/delete/<id>', methods=['GET', 'DELETE'])
 def delete(id):
@@ -71,7 +71,7 @@ def update(id):
 
         db.session.commit()
         return redirect(url_for('event.show', id=event.id))
-    return render_template('events/create.html', form=form)
+    return render_template('events/create.html', form=form, heading='Update Event', subheading='Please fill out all fields with your updated event details')
 
 
 

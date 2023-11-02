@@ -28,6 +28,7 @@ class Event(db.Model):
     ticketcost = db.Column(db.Integer)
     eventdatetime = db.Column(db.DateTime)
     description = db.Column(db.String(200))
+    username = db.Column(db.String(100))
 
     comments = db.relationship('Comments', backref='event')
     bookings = db.relationship('Booking', backref='event')

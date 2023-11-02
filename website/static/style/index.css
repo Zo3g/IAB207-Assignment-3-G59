@@ -9,6 +9,8 @@ h1 {
 
 .footer {
     text-align: center;
+    padding-bottom: 1%;
+    padding-top: 1%
 }
 
 .navbar {
@@ -36,7 +38,6 @@ h1 {
 .badge {
     background-color: #00407a;
     color: white;
-    margin-right: 1%;
 }
 
 .sold-out {
@@ -46,6 +47,11 @@ h1 {
 .button-primary {
     background-color: #00407a;
     color: white;
+}
+
+.btn-event-controls {
+    background-color: #ef3636;
+    margin-bottom: 5%;
 }
 
 .button-secondary {
@@ -90,13 +96,13 @@ h1 {
     text-align: center;
 }
 
-form{
+form {
     background: url('static/img/campus-2.jpg');
-  }
+}
 
 main#auth {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     min-height: 90vh;
     background: url('../img/campus-2.jpg');
@@ -117,7 +123,7 @@ main#auth {
     margin: 0;
 }
 
-.alert {    
+.alert {
     position: absolute;
     top: 10%;
     left: 30%;
@@ -127,4 +133,29 @@ main#auth {
 
 ul {
     list-style: none;
+}
+
+.comments-section h5 {
+    text-align: center;
+}
+
+.comments-section {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(229, 229, 229);
+    margin-bottom: 2%;
+}
+
+.comments-section ul {
+    height: 70vh;
+    overflow: scroll;
+}
+
+.comment {
+    list-style-type: none;
+    margin-right: 10%;
+    margin-top: 10%;
+    padding: 2% 5% 2% 5%;
+    border-radius: 10px;
+    border: solid 1.5px black;
 }
