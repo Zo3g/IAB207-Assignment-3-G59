@@ -37,7 +37,19 @@
                 <img style="width: 100%; height: 50%; border-radius: 10px;" src="{{ event.image }}">
             </div>
             <div class="col-lg-4">
-                <h4 class="pt-3">Comments:</h4>
+                <div class="row">
+                    <h4 class="pt-3">Comments:</h4>
+                </div>
+                <div class="comments-section">
+                    {% for comment in event.comments %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b>{{ comment.user.name }} <span class="ml-2 text-muted">{{comment.datetime}}</span></b>
+                            <p>{{ comment.text }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="row">
@@ -79,16 +91,6 @@
                 <p>{{event.description}}</p>
             </div>
             <div class="col-lg-4" class="comments-section">
-                <div class="comments-section">
-                    {% for comment in event.comments %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <b>{{ comment.user.name }} <span class="ml-2 text-muted">{{comment.datetime}}</span></b>
-                            <p>{{ comment.text }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
             </div>
         </div>
         <div class="row">
