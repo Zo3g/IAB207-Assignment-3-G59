@@ -44,34 +44,51 @@ def create():
 
 @eventbp.route('/delete/<id>', methods=['GET', 'DELETE'])
 def delete(id):
-    event = db.session.scalar(db.select(Event).where(Event.id==id))
-    db.session.delete(event)
-    db.session.commit()
-    flash('Event deleted')
-    return redirect(url_for('main.index'))
+    if current_user.is_authenticated:
+        if (event.username != current_user.name):
+            flash('Unauthorised attempt - an event may only be edited by the creator.')
+            return redirect(url_for('event.show', id=event.id))
+        
+        event = db.session.scalar(db.select(Event).where(Event.id==id))
+        db.session.delete(event)
+        db.session.commit()
+        flash('Event deleted')
+        return redirect(url_for('main.index'))
+    else:
+        flash('Unauthorised attempt - an event may only be edited by the creator. If you are the creator, please sign in to your account.')
+        return redirect(url_for('event.show', id=event.id))
 
 @eventbp.route('/update/<id>', methods=['GET','POST'])
 def update(id):
     form = EventEditForm()
     event = db.session.scalar(db.select(Event).where(Event.id==id))
-    if form.validate_on_submit():
+    if current_user.is_authenticated:
 
-        db_file_path = check_upload_file(form)
-        event_datetime = datetime.combine(form.eventdate.data, form.eventtime.data)
+        if (event.username != current_user.name):
+            flash('Unauthorised attempt - an event may only be edited by the creator.')
+            return redirect(url_for('event.show', id=event.id))
+
+        if form.validate_on_submit():
+
+            db_file_path = check_upload_file(form)
+            event_datetime = datetime.combine(form.eventdate.data, form.eventtime.data)
 
 
-        event.name = form.name.data
-        event.description=form.description.data
-        event.image=db_file_path 
-        event.organiser=form.organiser.data 
-        event.numticket=form.numticket.data
-        event.ticketcost=form.ticketcost.data
-        event.eventdatetime=event_datetime
-        event.venuename=form.venuename.data
+            event.name = form.name.data
+            event.description=form.description.data
+            event.image=db_file_path 
+            event.organiser=form.organiser.data 
+            event.numticket=form.numticket.data
+            event.ticketcost=form.ticketcost.data
+            event.eventdatetime=event_datetime
+            event.venuename=form.venuename.data
 
-        db.session.commit()
+            db.session.commit()
+            return redirect(url_for('event.show', id=event.id))
+        return render_template('events/create.html', form=form, heading='Update Event', subheading='Please fill out all fields with your updated event details')
+    else:
+        flash('Unauthorised attempt - an event may only be edited by the creator. If you are the creator, please sign in to your account.')
         return redirect(url_for('event.show', id=event.id))
-    return render_template('events/create.html', form=form, heading='Update Event', subheading='Please fill out all fields with your updated event details')
 
 
 
