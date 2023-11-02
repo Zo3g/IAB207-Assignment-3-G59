@@ -23,6 +23,19 @@ class EventForm(FlaskForm):
   description = TextAreaField('Description', 
             validators=[InputRequired()])
   submit = SubmitField("Create")
+
+class EventEditForm(FlaskForm):
+  name = StringField('Your Event Name')
+  venuename = StringField('Venue')
+  image = FileField('Destination Image', validators=[
+      FileAllowed(ALLOWED_FILE, message='Only supports PNG, JPG, png, jpg')])
+  organiser = SelectField('Select', choices=['Faculty of Business', 'Faculty of Creative Industries', 'Faculty of Engineering', 'Faculty of Information Technology', 'Faculty of Sciences', 'QUT Bookclub', 'CODE Network', 'Debating Society', 'QUT Cheer and Dance', 'QUT Cliffhangers'])
+  numticket = IntegerField('Number of available tickets')
+  ticketcost = FloatField('Cost of a single ticket')
+  eventdate = DateField('Event date', format='%Y-%m-%d')
+  eventtime = TimeField('Event time')
+  description = TextAreaField('Description')
+  submit = SubmitField("Submit")
   
 
 # creates the login information
@@ -42,7 +55,8 @@ class RegisterForm(FlaskForm):
     user_name = StringField("User Name", validators=[InputRequired()])
     email_id = StringField("Email Address", validators=[
                            Email("Please enter a valid email")])
-    # linking two fields - password should be equal to data entered in confirm
+    address = StringField("Address", validators=[InputRequired()])
+    contactNumber = StringField("Mobile Number", validators=[InputRequired()])
     password = PasswordField("Password", validators=[InputRequired(),
                                                      EqualTo('confirm', message="Passwords should match")])
     confirm = PasswordField("Confirm Password")
@@ -56,3 +70,7 @@ class RegisterForm(FlaskForm):
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
   submit = SubmitField('Create')
+
+class BookingForm(FlaskForm):
+  tickets = IntegerField('Number of tickets purchased', validators=[InputRequired()])
+  submit = SubmitField("Tickets selected")

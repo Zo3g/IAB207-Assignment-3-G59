@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from .models import Event, Booking
+from .models import Event, Booking, User
 # from .forms import BookingForm
 from . import db
 import os
@@ -12,6 +12,7 @@ bookingbp = Blueprint('booking', __name__, url_prefix='/booking')
 
 @bookingbp.route('/', methods=['GET', 'POST'])
 @login_required
-def get_booking():
-    bookings = db.session.scalar(db.select(Booking).where(Booking.userName.like(current_user.name)))
-    return render_template('booking.html', bookings = bookings)
+def bookings():
+    user = db.session.scalar(db.select(User).where(User.id == current_user.id))
+    # event = db.session.scalar(db.select(Event).where(Booking.event))
+    return render_template('booking.html', user = user)

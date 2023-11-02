@@ -1,1 +1,47 @@
-<h1>HELLO WORLD</h1>
+{% extends "base.html" %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <main>
+        <div class="container">
+            <div class="row mb-3">
+                <h1>My Booking History</h1>
+            </div>
+            <div class="row mb-3">
+                {% for booking in user.bookings %}
+                <div class="card card-lg d-none d-lg-block mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                            <img src="{{ booking.event.image }}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <h5 class="card-title">{{booking.event.name}}</h5>
+                                    <h6 class="text-body-secondary">Booking Reference: XAR79072586</h6>
+                                    <h6>2 x General Admission</h6>
+                                </div>
+                                <div class="row">
+                                    <p class="card-text">{{booking.event.description}}</p>
+                                </div>
+                                <a href="{{ url_for('event.show', id=booking.event.id) }}" class="stretched-link"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 my-auto">
+                            <div class="card-body date-time">
+                                <!-- <h4>14<br>September<br>6:00 pm</h4> -->
+                                <h4>{{booking.event.eventdatetime}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    </main>
+    {% endblock %}

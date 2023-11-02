@@ -7,8 +7,11 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
+    address = db.Column(db.String(200), nullable=False)
+    contactNumber = db.Column(db.String(12), nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     comments = db.relationship('Comments', backref='user')
+    bookings = db.relationship('Booking', backref ='user')
 
     def __repr__(self):
         return f"Name: {self.name}"
@@ -17,6 +20,7 @@ class Event(db.Model):
     __tablename__ = 'events'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
+    status = db.Column(db.String(10))
     venuename = db.Column(db.String(200))
     image = db.Column(db.String(400))
     organiser = db.Column(db.String(80))
@@ -24,6 +28,9 @@ class Event(db.Model):
     ticketcost = db.Column(db.Integer)
     eventdatetime = db.Column(db.DateTime)
     description = db.Column(db.String(200))
+
+    comments = db.relationship('Comments', backref='event')
+    bookings = db.relationship('Booking', backref='event')
     
     def __repr__(self):
         return f"Name: {self.name}"
@@ -41,10 +48,10 @@ class Comments(db.Model):
     
 class Booking(db.Model):
     __tablename__ = 'booking'
-    userName = db.Column(db.String(100))
     reference = db.Column(db.Integer, primary_key=True)
-    eventID = db.Column(db.Integer, primary_key=True)
-    tickets = db.Column(db.Integer)
+    userName = db.Column(db.String(100), db.ForeignKey('users.id'), nullable=False)
+    eventID = db.Column(db.Integer, db.ForeignKey('events.id'),nullable=True)
+    tickets = db.Column(db.Integer, nullable=False)
         
     def __repr__(self):
         return f"Comment: {self.text}"

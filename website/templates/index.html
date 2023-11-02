@@ -145,16 +145,20 @@
             <div class="btn-group button-primary btn-group-lg" role="group" aria-label="Basic example">
                 <a href="{{url_for('main.filter_events', faculty='Faculty of Business')}}" class="btn col-md-3"
                     style="padding-block: 50px; background-color: rgb(0, 255, 255, 0.8)">Faculty of Business</a>
-                <a href="{{url_for('main.filter_events', faculty='Faculty of Creative Industries')}}" class="btn btn-primary col-md-3"
-                    style="padding-block: 50px; background-color:#00407a; outline: none;">Faculty of Creative Industries</a>
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Creative Industries')}}"
+                    class="btn btn-primary col-md-3"
+                    style="padding-block: 50px; background-color:#00407a; outline: none;">Faculty of Creative
+                    Industries</a>
                 <a href="{{url_for('main.filter_events', faculty='Faculty of Engineering')}}" class="btn col-md-3"
                     style="padding-block: 50px; background-color: rgb(0, 255, 255, 0.8)">Faculty of Engineering</a>
             </div>
         </div>
         <div class="d-grid gap-2">
             <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                <a href="{{url_for('main.filter_events', faculty='Faculty of Information Technology')}}" class="btn btn-primary col-md-3"
-                    style="padding-block: 50px; background-color:#00407a; outline: none;">Faculty of Information Technology</a>
+                <a href="{{url_for('main.filter_events', faculty='Faculty of Information Technology')}}"
+                    class="btn btn-primary col-md-3"
+                    style="padding-block: 50px; background-color:#00407a; outline: none;">Faculty of Information
+                    Technology</a>
                 <a href="{{url_for('main.filter_events', faculty='Faculty of Sciences')}}" class="btn col-md-3"
                     style="padding-block: 50px; background-color:rgb(0, 255, 255, 0.8)">Faculty of Sciences</a>
                 <button type=" button" class="btn btn-primary dropdown-toggle col-md-3" data-bs-toggle="dropdown"
@@ -162,11 +166,19 @@
                     Filter by Student Clubs
                 </button>
                 <ul class=" dropdown-menu">
-                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Bookclub')}}">QUT Bookclub</a></li>
-                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='Code Network')}}">Code Network</a></li>
-                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='Debating Society')}}">Debating Society</a></li>
-                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Cheer and Dance')}}">QUT Cheer and Dance</a></li>
-                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Cliffhangers')}}">QUT Cliffhangers</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='QUT Bookclub')}}">QUT
+                            Bookclub</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.filter_events', faculty='Code Network')}}">Code
+                            Network</a></li>
+                    <li><a class="dropdown-item"
+                            href="{{url_for('main.filter_events', faculty='Debating Society')}}">Debating Society</a>
+                    </li>
+                    <li><a class="dropdown-item"
+                            href="{{url_for('main.filter_events', faculty='QUT Cheer and Dance')}}">QUT Cheer and
+                            Dance</a></li>
+                    <li><a class="dropdown-item"
+                            href="{{url_for('main.filter_events', faculty='QUT Cliffhangers')}}">QUT Cliffhangers</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -190,12 +202,11 @@
                         <div class="row">
                             <p class="card-text">{{event.description}}</p>
                         </div>
-                        <a href="eventDetails.html" class="stretched-link"></a>
+                        <a href="{{ url_for('event.show', id=event.id) }}" class="stretched-link"></a>
                     </div>
                 </div>
                 <div class="col-md-2 my-auto">
                     <div class="card-body date-time">
-                        <!-- <h4>14<br>September<br>6:00 pm</h4> -->
                         <h4>{{event.eventdatetime}}</h4>
                     </div>
                 </div>
